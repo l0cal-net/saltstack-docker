@@ -1,9 +1,9 @@
 name: Create and publish docker images
 
 on:
-  push:
-    branches:
-      - main
+  release:
+    types:
+      - published
 
 env:
   REGISTRY: git.l0cal.net
