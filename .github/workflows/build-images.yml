@@ -16,10 +16,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
       - name: Get SaltStack release versions
         id: gather-salt-releases-matrix
-        run: |
-          python3 .github/scripts/get-salt-releases-matrix.py
+        run: .github/scripts/get-salt-releases-matrix.py
+
+    outputs:
+      salt-matrix: ${{ steps.gather-salt-releases-matrix.outputs.salt-matrix }}
 
   build:
     runs-on: ubuntu-latest

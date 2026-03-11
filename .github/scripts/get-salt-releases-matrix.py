@@ -16,7 +16,7 @@ versions = dict()
 for release in json.load(res):
     major, minor = split_version(release["tag_name"])
     if major not in versions:
-        versions[major] = release["tag_name"]
+        versions[major] = f"{major}.{minor}"
 
 matrix = dict(salt=list(versions.values()))
 
