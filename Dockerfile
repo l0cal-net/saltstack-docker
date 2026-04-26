@@ -14,7 +14,7 @@ RUN set -eux; \
 RUN set -eux; \
     groupadd --system --gid 450 salt; \
     useradd --system --uid 450 --home-dir /home/salt --create-home --shell /bin/sh --gid 450 salt; \
-    mkdir -p /etc/pki /etc/salt/pki /etc/salt/minion.d/ /etc/salt/master.d /etc/salt/proxy.d /var/cache/salt /var/log/salt /var/run/salt; \
+    mkdir -p /etc/pki /etc/salt/pki /etc/salt/minion.d/ /etc/salt/master.d /etc/salt/proxy.d /var/cache/salt/master/proc /var/log/salt /var/run/salt; \
     chmod -R 2775 /etc/pki /etc/salt /var/cache/salt /var/log/salt /var/run/salt; \
     chgrp -R salt /etc/pki /etc/salt /var/cache/salt /var/log/salt /var/run/salt
 
