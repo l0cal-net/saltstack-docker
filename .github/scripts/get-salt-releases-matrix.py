@@ -27,6 +27,8 @@ versions = dict()
 
 for release in json.load(res):
     major, minor = split_version(release["tag_name"])
+    if "rc" in minor:
+        continue
     if major not in versions:
         versions[major] = f"{major}.{minor}"
 
