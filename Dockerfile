@@ -2,8 +2,6 @@
 
 FROM python:3.10-slim AS builder
 
-ARG SALT_VERSION="3007.12"
-
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 RUN set -eux; \
@@ -18,10 +16,12 @@ RUN set -eux; \
     chmod -R 2775 /etc/pki /etc/salt /var/cache/salt /var/log/salt /var/run/salt; \
     chgrp -R salt /etc/pki /etc/salt /var/cache/salt /var/log/salt /var/run/salt
 
+ARG SALT_VERSION="3007.12"
+
 RUN set -eux; \
     ARCH=$(uname -m | sed 's/aarch64/arm64/'); \
     mkdir -p /opt/saltstack; \
-    curl -L "https://packages.broadcom.com/artifactory/saltproject-generic/onedir/${SALT_VERSION}/salt-${SALT_VERSION}-onedir-linux-${ARCH}.tar.xz" | tar -xJf - -C /opt/saltstack/ ; \
+    curl -L "https://github.com/saltstack/salt/releases/download/v${SALT_VERSION}/salt-${SALT_VERSION}-onedir-linux-${ARCH}.tar.xz" | tar -xJf - -C /opt/saltstack/ ; \
     su - salt -c '/opt/saltstack/salt/salt-run salt.cmd tls.create_self_signed_cert'
 
 
