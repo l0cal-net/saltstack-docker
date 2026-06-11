@@ -10,7 +10,7 @@ repos:
       - id: check-added-large-files
 
   - repo: https://github.com/psf/black
-    rev: 26.1.0
+    rev: 26.5.1
     hooks:
       - id: black
         language_version: python3
@@ -21,7 +21,7 @@ repos:
       - id: dockerlint
 
   - repo: https://github.com/reteps/dockerfmt
-    rev: v0.3.9
+    rev: v0.5.2
     hooks:
       - id: dockerfmt
         args:
